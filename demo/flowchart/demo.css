@@ -3,7 +3,7 @@
     touch-action:none;
 }
 
-.flowchart-demo .window {
+.component {
     border: 1px solid #346789;
     box-shadow: 2px 2px 19px #aaa;
     -o-box-shadow: 2px 2px 19px #aaa;
@@ -36,7 +36,27 @@
 .smallwindow {
     width: 60px;
     height: 60px;
-
+    border: 1px solid #346789;
+    box-shadow: 2px 2px 19px #aaa;
+    -o-box-shadow: 2px 2px 19px #aaa;
+    -webkit-box-shadow: 2px 2px 19px #aaa;
+    -moz-box-shadow: 2px 2px 19px #aaa;
+    -moz-border-radius: 0.5em;
+    border-radius: 0.5em;
+    opacity: 0.8;
+    cursor: pointer;
+    text-align: center;
+    z-index: 20;
+    position: absolute;
+    background-color: #eeeeef;
+    color: black;
+    font-family: helvetica, sans-serif;
+    padding: 0.5em;
+    font-size: 0.9em;
+    -webkit-transition: -webkit-box-shadow 0.15s ease-in;
+    -moz-transition: -moz-box-shadow 0.15s ease-in;
+    -o-transition: -o-box-shadow 0.15s ease-in;
+    transition: box-shadow 0.15s ease-in;
 }
 
 .flowchart-demo .window:hover {

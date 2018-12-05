@@ -161,3 +161,27 @@ jsPlumb.ready(function () {
     jsPlumb.fire("jsPlumbDemoLoaded", instance);
 
 });
+
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  const node = document.getElementById(data);
+  var nodeCopy = node.cloneNode(true);
+  console.log(ev)
+  nodeCopy.id = "newId"; /* We cannot use the same ID */
+  nodeCopy.classList.add("window");
+  nodeCopy.classList.add("bigwindow");
+  nodeCopy.classList.remove("smallwindow");
+  ev.target.appendChild(nodeCopy);
+
+  console.log("ev ", ev)
+}

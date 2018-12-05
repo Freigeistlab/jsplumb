@@ -2,7 +2,7 @@
 <html>
     <head>
 
-        <title>jsPlumb - flowchart demonstration</title>
+        <title>Freigeist Component Editor</title>
         <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -26,17 +26,17 @@
                     <strong>Input Components</strong><br><br>
                     <table>
                         <tr>
-                            <td><div class="smallwindow window jtk-node smallwindow" ><strong>Scale</strong><br/><br/></div></td>
-                            <td><div class="smallwindow window jtk-node" ><strong>LightPad</strong><br/><br/></div></td>
-                            <td><div class="smallwindow window jtk-node" ><strong>Heat-Sensor</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component"><strong>Scale</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component"><strong>LightPad</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component"><strong>Heat-Sensor</strong><br/><br/></div></td>
                         </tr>
                         <tr>
-                            <td><div class="smallwindow window jtk-node" ><strong>Infrared</strong><br/><br/></div></td>
-                            <td><div class="smallwindow window jtk-node" ><strong>BT-Handles</strong><br/><br/></div></td>
-                            <td><div class="smallwindow window jtk-node" ><strong>Piezo</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" ><strong>Infrared</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" ><strong>BT-Handles</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" ><strong>Piezo</strong><br/><br/></div></td>
                         </tr>
                         <tr>
-                            <td><div class="smallwindow window jtk-node" ><strong>Custom</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" ><strong>Custom</strong><br/><br/></div></td>
                         </tr>
                     </table>
                 </div>
@@ -45,20 +45,26 @@
                     <strong>Output Components</strong><br><br>
                     <table>
                         <tr>
-                            <td><div class="smallwindow window jtk-node smallwindow" ><strong>LCD-Screen</strong><br/><br/></div></td>
-                            <td><div class="smallwindow window jtk-node" ><strong>LED</strong><br/><br/></div></td>
-                            <td><div class="smallwindow window jtk-node" ><strong>Beamer</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component"
+                                     draggable="true"
+                                     ondragstart="drag(event)" ><strong>LCD-Screen</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component"
+                                     draggable="true"
+                                     ondragstart="drag(event)" ><strong>LED</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" id="test"
+                                     draggable="true"
+                                     ondragstart="drag(event)" ><strong>Beamer</strong><br/><br/></div></td>
                         </tr>
                         <tr>
-                            <td><div class="smallwindow window jtk-node" ><strong>Speaker</strong><br/><br/></div></td>
-                            <td><div class="smallwindow window jtk-node" ><strong>Custom</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" ><strong>Speaker</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" ><strong>Custom</strong><br/><br/></div></td>
                         </tr>
                     </table>
                 </div>
 
             </div>
-            <div class="jtk-demo-canvas canvas-wide jtk-surface jtk-surface-nopan" id="canvas">
-                <div class="bigwindow window jtk-node" id="flowchartWindow1">
+            <div class="jtk-demo-canvas canvas-wide jtk-surface jtk-surface-nopan" id="canvas" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="bigwindow window component jtk-node" id="flowchartWindow1">
 
                     <div style="float: left;"><strong >LightPad</strong></div>
                     <div style="float: left;">Threshold: <input type="text" style="width:30px;"/></div>
@@ -66,9 +72,9 @@
 
 
                 </div>
-                <div class="bigwindow window jtk-node" id="flowchartWindow2"><strong>LED</strong><br/><br/></div>
-                <div class="bigwindow window jtk-node" id="flowchartWindow3"><strong>Scale</strong><br/><br/></div>
-                <div class="bigwindow window jtk-node" id="flowchartWindow4"><strong>&</strong><br/><br/></div>
+                <div class="bigwindow window component jtk-node" id="flowchartWindow2"><strong>LED</strong><br/><br/></div>
+                <div class="bigwindow window component jtk-node" id="flowchartWindow3"><strong>Scale</strong><br/><br/></div>
+                <div class="bigwindow window component jtk-node" id="flowchartWindow4"><strong>&</strong><br/><br/></div>
             </div>
             <!-- /demo -->
             <!-- explanation -->
