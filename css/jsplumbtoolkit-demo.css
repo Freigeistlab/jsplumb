@@ -57,7 +57,7 @@ body {
     max-height:700px;
     border:1px solid #CCC;
     background-color:white;
-    display: flex;
+    width: 80%;
 }
 
 .canvas-wide {

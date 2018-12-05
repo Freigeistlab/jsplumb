@@ -12,11 +12,6 @@
     -moz-border-radius: 0.5em;
     border-radius: 0.5em;
     opacity: 0.8;
-    width: 80px;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
     text-align: center;
     z-index: 20;
@@ -30,6 +25,18 @@
     -moz-transition: -moz-box-shadow 0.15s ease-in;
     -o-transition: -o-box-shadow 0.15s ease-in;
     transition: box-shadow 0.15s ease-in;
+}
+
+.bigwindow {
+    width: 120px;
+    height: 120px;
+
+}
+
+.smallwindow {
+    width: 60px;
+    height: 60px;
+
 }
 
 .flowchart-demo .window:hover {
@@ -108,4 +115,12 @@ path, .jtk-endpoint {
 
 .jtk-overlay {
     background-color:transparent;
+}
+
+th, td {
+    padding-left: 10px;
+    padding-right: 60px;
+    padding-top: 10px;
+    padding-bottom: 60px;
+
 }

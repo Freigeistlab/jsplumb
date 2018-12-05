@@ -14,17 +14,61 @@
         <link rel="stylesheet" href="demo.css">
 
     </head>
-    <body data-demo-id="flowchart">
+    <body>
 
-        <a style="margin:10px 0 0 10px;display:inline-block" href="https://jsplumbtoolkit.com"><img src="../../img/logo-jsplumb-green.png"></a>
-
-        <div class="jtk-demo-main">
+        <div class="jtk-demo-main flowchart-demo" >
 			<!-- demo -->
-            <div class="jtk-demo-canvas canvas-wide flowchart-demo jtk-surface jtk-surface-nopan" id="canvas">
-                <div class="window jtk-node" id="flowchartWindow1"><strong>1</strong><br/><br/></div>
-                <div class="window jtk-node" id="flowchartWindow2"><strong>2</strong><br/><br/></div>
-                <div class="window jtk-node" id="flowchartWindow3"><strong>3</strong><br/><br/></div>
-                <div class="window jtk-node" id="flowchartWindow4"><strong>4</strong><br/><br/></div>
+            <div id="component-repository" style="width: 20%;float:left;height:550px;
+                    max-height:700px;
+                    border:1px solid #CCC;
+                    background-color:white;">
+                <div id="input-component-container">
+                    <strong>Input Components</strong><br><br>
+                    <table>
+                        <tr>
+                            <td><div class="smallwindow window jtk-node smallwindow" ><strong>Scale</strong><br/><br/></div></td>
+                            <td><div class="smallwindow window jtk-node" ><strong>LightPad</strong><br/><br/></div></td>
+                            <td><div class="smallwindow window jtk-node" ><strong>Heat-Sensor</strong><br/><br/></div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="smallwindow window jtk-node" ><strong>Infrared</strong><br/><br/></div></td>
+                            <td><div class="smallwindow window jtk-node" ><strong>BT-Handles</strong><br/><br/></div></td>
+                            <td><div class="smallwindow window jtk-node" ><strong>Piezo</strong><br/><br/></div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="smallwindow window jtk-node" ><strong>Custom</strong><br/><br/></div></td>
+                        </tr>
+                    </table>
+                </div>
+                <br><br>
+                <div id="output-component-container">
+                    <strong>Output Components</strong><br><br>
+                    <table>
+                        <tr>
+                            <td><div class="smallwindow window jtk-node smallwindow" ><strong>LCD-Screen</strong><br/><br/></div></td>
+                            <td><div class="smallwindow window jtk-node" ><strong>LED</strong><br/><br/></div></td>
+                            <td><div class="smallwindow window jtk-node" ><strong>Beamer</strong><br/><br/></div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="smallwindow window jtk-node" ><strong>Speaker</strong><br/><br/></div></td>
+                            <td><div class="smallwindow window jtk-node" ><strong>Custom</strong><br/><br/></div></td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <div class="jtk-demo-canvas canvas-wide jtk-surface jtk-surface-nopan" id="canvas">
+                <div class="bigwindow window jtk-node" id="flowchartWindow1">
+
+                    <div style="float: left;"><strong >LightPad</strong></div>
+                    <div style="float: left;">Threshold: <input type="text" style="width:30px;"/></div>
+
+
+
+                </div>
+                <div class="bigwindow window jtk-node" id="flowchartWindow2"><strong>LED</strong><br/><br/></div>
+                <div class="bigwindow window jtk-node" id="flowchartWindow3"><strong>Scale</strong><br/><br/></div>
+                <div class="bigwindow window jtk-node" id="flowchartWindow4"><strong>&</strong><br/><br/></div>
             </div>
             <!-- /demo -->
             <!-- explanation -->
