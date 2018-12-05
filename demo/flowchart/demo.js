@@ -181,8 +181,11 @@ function drop(ev) {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("id");
   const node = document.getElementById(data);
+
+  const containerId = node.parentNode.parentNode.parentNode.parentNode.parentNode.id;
+
   var nodeCopy = node.cloneNode(true);
-  console.log(ev);
+
   nodeCopy.id = "flowchart"+node.id; /* We cannot use the same ID */
   nodeCopy.removeAttribute('draggable');
   nodeCopy.classList.add("window");
@@ -192,7 +195,14 @@ function drop(ev) {
 
   ev.target.appendChild(nodeCopy);
   instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), { grid: [20, 20] });
-  _addEndpoints(node.id, ["RightMiddle"], ["LeftMiddle"]);
+  if (containerId.startsWith("input")){
+    _addEndpoints(node.id, ["RightMiddle"], []);
+  } else if (containerId.startsWith("intermediate")){
+    _addEndpoints(node.id, ["RightMiddle"], ["LeftMiddle"]);
+  } else if (containerId.startsWith("output")){
+    _addEndpoints(node.id, [], ["LeftMiddle"]);
+  }
+
 
   console.log("ev ", ev)
 }
