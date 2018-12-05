@@ -18,25 +18,52 @@
 
         <div class="jtk-demo-main flowchart-demo" >
 			<!-- demo -->
-            <div id="component-repository" style="width: 20%;float:left;height:550px;
-                    max-height:700px;
+            <div id="component-repository" style="width: 20%;float:left;height:700px;
+                    max-height:800px;
                     border:1px solid #CCC;
                     background-color:white;">
                 <div id="input-component-container">
                     <strong>Input Components</strong><br><br>
                     <table>
                         <tr>
-                            <td><div class="smallwindow component"><strong>Scale</strong><br/><br/></div></td>
-                            <td><div class="smallwindow component"><strong>LightPad</strong><br/><br/></div></td>
-                            <td><div class="smallwindow component"><strong>Heat-Sensor</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" id="scale" draggable="true"
+                                     ondragstart="drag(event)"><strong>Scale</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" id="light-pad" draggable="true"
+                                     ondragstart="drag(event)"><strong>LightPad</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" id="heat-sensor" draggable="true"
+                                     ondragstart="drag(event)"><strong>Heat-Sensor</strong><br/><br/></div></td>
                         </tr>
                         <tr>
-                            <td><div class="smallwindow component" ><strong>Infrared</strong><br/><br/></div></td>
-                            <td><div class="smallwindow component" ><strong>BT-Handles</strong><br/><br/></div></td>
-                            <td><div class="smallwindow component" ><strong>Piezo</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" draggable="true"
+                                     ondragstart="drag(event)"><strong>Infrared</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" id="bt-handles" draggable="true"
+                                     ondragstart="drag(event)"><strong>BT-Handles</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" id="piezo" draggable="true"
+                                     ondragstart="drag(event)" ><strong>Piezo</strong><br/><br/></div></td>
                         </tr>
                         <tr>
-                            <td><div class="smallwindow component" ><strong>Custom</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" id="custom-in" draggable="true"
+                                     ondragstart="drag(event)" ><strong>Custom</strong><br/><br/></div></td>
+                        </tr>
+                    </table>
+                </div>
+                <br><br>
+                <div id="intermediate-component-container">
+                    <strong>Intermediate Components</strong><br><br>
+                    <table>
+                        <tr>
+                            <td><div class="smallwindow component" id="and"
+                                     draggable="true"
+                                     ondragstart="drag(event)" ><strong>&</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" id="or"
+                                     draggable="true"
+                                     ondragstart="drag(event)" ><strong>OR</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" id="timer"
+                                     draggable="true"
+                                     ondragstart="drag(event)" ><strong>Timer</strong><br/><br/></div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="smallwindow component" id="recipe-handler"><strong>Recipe-Handler</strong><br/><br/></div></td>
                         </tr>
                     </table>
                 </div>
@@ -45,19 +72,19 @@
                     <strong>Output Components</strong><br><br>
                     <table>
                         <tr>
-                            <td><div class="smallwindow component"
+                            <td><div class="smallwindow component" id="lcd"
                                      draggable="true"
                                      ondragstart="drag(event)" ><strong>LCD-Screen</strong><br/><br/></div></td>
-                            <td><div class="smallwindow component"
+                            <td><div class="smallwindow component" id="led"
                                      draggable="true"
                                      ondragstart="drag(event)" ><strong>LED</strong><br/><br/></div></td>
-                            <td><div class="smallwindow component" id="test"
+                            <td><div class="smallwindow component" id="beamer"
                                      draggable="true"
                                      ondragstart="drag(event)" ><strong>Beamer</strong><br/><br/></div></td>
                         </tr>
                         <tr>
-                            <td><div class="smallwindow component" ><strong>Speaker</strong><br/><br/></div></td>
-                            <td><div class="smallwindow component" ><strong>Custom</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" id="speaker"><strong>Speaker</strong><br/><br/></div></td>
+                            <td><div class="smallwindow component" id="custom-out"><strong>Custom</strong><br/><br/></div></td>
                         </tr>
                     </table>
                 </div>

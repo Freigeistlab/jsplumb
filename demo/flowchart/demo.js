@@ -1,6 +1,64 @@
+
+var instance = null;
+
+var connectorPaintStyle = {
+    strokeWidth: 2,
+    stroke: "#61B7CF",
+    joinstyle: "round",
+    outlineStroke: "white",
+    outlineWidth: 2
+  },
+  // .. and this is the hover style.
+  connectorHoverStyle = {
+    strokeWidth: 3,
+    stroke: "#216477",
+    outlineWidth: 5,
+    outlineStroke: "white"
+  },
+  endpointHoverStyle = {
+    fill: "#216477",
+    stroke: "#216477"
+  },
+// the definition of source endpoints (the small blue ones)
+  sourceEndpoint = {
+    endpoint: "Dot",
+    paintStyle: {
+      stroke: "#7AB02C",
+      fill: "transparent",
+      radius: 7,
+      strokeWidth: 1
+    },
+    isSource: true,
+    connector: [ "Flowchart", { stub: [40, 60], gap: 10, cornerRadius: 5, alwaysRespectStubs: true } ],
+    connectorStyle: connectorPaintStyle,
+    hoverPaintStyle: endpointHoverStyle,
+    connectorHoverStyle: connectorHoverStyle,
+    dragOptions: {},
+    overlays: [
+      [ "Label", {
+        location: [0.5, 1.5],
+        label: "Drag",
+        cssClass: "endpointSourceLabel",
+        visible:false
+      } ]
+    ]
+  },
+  // the definition of target endpoints (will appear when the user drags a connection)
+  targetEndpoint = {
+    endpoint: "Dot",
+    paintStyle: { fill: "#7AB02C", radius: 7 },
+    hoverPaintStyle: endpointHoverStyle,
+    maxConnections: -1,
+    dropOptions: { hoverClass: "hover", activeClass: "active" },
+    isTarget: true,
+    overlays: [
+      [ "Label", { location: [0.5, -0.5], label: "Drop", cssClass: "endpointTargetLabel", visible:false } ]
+    ]
+  };
+
 jsPlumb.ready(function () {
 
-    var instance = window.jsp = jsPlumb.getInstance({
+    instance = window.jsp = jsPlumb.getInstance({
         // default drag options
         DragOptions: { cursor: 'pointer', zIndex: 2000 },
         // the overlays to decorate each connection with.  note that the label overlay uses a function to generate the label text; in this
@@ -39,76 +97,11 @@ jsPlumb.ready(function () {
     instance.registerConnectionType("basic", basicType);
 
     // this is the paint style for the connecting lines..
-    var connectorPaintStyle = {
-            strokeWidth: 2,
-            stroke: "#61B7CF",
-            joinstyle: "round",
-            outlineStroke: "white",
-            outlineWidth: 2
-        },
-    // .. and this is the hover style.
-        connectorHoverStyle = {
-            strokeWidth: 3,
-            stroke: "#216477",
-            outlineWidth: 5,
-            outlineStroke: "white"
-        },
-        endpointHoverStyle = {
-            fill: "#216477",
-            stroke: "#216477"
-        },
-    // the definition of source endpoints (the small blue ones)
-        sourceEndpoint = {
-            endpoint: "Dot",
-            paintStyle: {
-                stroke: "#7AB02C",
-                fill: "transparent",
-                radius: 7,
-                strokeWidth: 1
-            },
-            isSource: true,
-            connector: [ "Flowchart", { stub: [40, 60], gap: 10, cornerRadius: 5, alwaysRespectStubs: true } ],
-            connectorStyle: connectorPaintStyle,
-            hoverPaintStyle: endpointHoverStyle,
-            connectorHoverStyle: connectorHoverStyle,
-            dragOptions: {},
-            overlays: [
-                [ "Label", {
-                    location: [0.5, 1.5],
-                    label: "Drag",
-                    cssClass: "endpointSourceLabel",
-                    visible:false
-                } ]
-            ]
-        },
-    // the definition of target endpoints (will appear when the user drags a connection)
-        targetEndpoint = {
-            endpoint: "Dot",
-            paintStyle: { fill: "#7AB02C", radius: 7 },
-            hoverPaintStyle: endpointHoverStyle,
-            maxConnections: -1,
-            dropOptions: { hoverClass: "hover", activeClass: "active" },
-            isTarget: true,
-            overlays: [
-                [ "Label", { location: [0.5, -0.5], label: "Drop", cssClass: "endpointTargetLabel", visible:false } ]
-            ]
-        },
-        init = function (connection) {
-            connection.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
-        };
 
-    var _addEndpoints = function (toId, sourceAnchors, targetAnchors) {
-        for (var i = 0; i < sourceAnchors.length; i++) {
-            var sourceUUID = toId + sourceAnchors[i];
-            instance.addEndpoint("flowchart" + toId, sourceEndpoint, {
-                anchor: sourceAnchors[i], uuid: sourceUUID
-            });
-        }
-        for (var j = 0; j < targetAnchors.length; j++) {
-            var targetUUID = toId + targetAnchors[j];
-            instance.addEndpoint("flowchart" + toId, targetEndpoint, { anchor: targetAnchors[j], uuid: targetUUID });
-        }
+    var init = function (connection) {
+        connection.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
     };
+
 
     // suspend drawing and initialise.
     instance.batch(function () {
@@ -168,20 +161,38 @@ function allowDrop(ev) {
 }
 
 function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
+  ev.dataTransfer.setData("id", ev.target.id);
 }
+
+var _addEndpoints = function (toId, sourceAnchors, targetAnchors) {
+  for (var i = 0; i < sourceAnchors.length; i++) {
+    var sourceUUID = toId + sourceAnchors[i];
+    instance.addEndpoint("flowchart" + toId, sourceEndpoint, {
+      anchor: sourceAnchors[i], uuid: sourceUUID
+    });
+  }
+  for (var j = 0; j < targetAnchors.length; j++) {
+    var targetUUID = toId + targetAnchors[j];
+    instance.addEndpoint("flowchart" + toId, targetEndpoint, { anchor: targetAnchors[j], uuid: targetUUID });
+  }
+};
 
 function drop(ev) {
   ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
+  var data = ev.dataTransfer.getData("id");
   const node = document.getElementById(data);
   var nodeCopy = node.cloneNode(true);
-  console.log(ev)
-  nodeCopy.id = "newId"; /* We cannot use the same ID */
+  console.log(ev);
+  nodeCopy.id = "flowchart"+node.id; /* We cannot use the same ID */
+  nodeCopy.removeAttribute('draggable');
   nodeCopy.classList.add("window");
   nodeCopy.classList.add("bigwindow");
+  nodeCopy.classList.add("jtk-node");
   nodeCopy.classList.remove("smallwindow");
+
   ev.target.appendChild(nodeCopy);
+  instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), { grid: [20, 20] });
+  _addEndpoints(node.id, ["RightMiddle"], ["LeftMiddle"]);
 
   console.log("ev ", ev)
 }
