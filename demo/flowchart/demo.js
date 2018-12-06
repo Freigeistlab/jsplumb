@@ -177,6 +177,8 @@ var _addEndpoints = function (toId, sourceAnchors, targetAnchors) {
   }
 };
 
+let componentId = 0;
+
 function drop(ev) {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("id");
@@ -186,7 +188,9 @@ function drop(ev) {
 
   var nodeCopy = node.cloneNode(true);
 
-  nodeCopy.id = "flowchart"+node.id; /* We cannot use the same ID */
+  const nodeId = node.id + componentId;
+  componentId++;
+  nodeCopy.id = "flowchart"+nodeId; /* We cannot use the same ID */
   nodeCopy.removeAttribute('draggable');
   nodeCopy.classList.add("window");
   nodeCopy.classList.add("bigwindow");
@@ -196,11 +200,11 @@ function drop(ev) {
   ev.target.appendChild(nodeCopy);
   instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), { grid: [20, 20] });
   if (containerId.startsWith("input")){
-    _addEndpoints(node.id, ["RightMiddle"], []);
+    _addEndpoints(nodeId, ["RightMiddle"], []);
   } else if (containerId.startsWith("intermediate")){
-    _addEndpoints(node.id, ["RightMiddle"], ["LeftMiddle"]);
+    _addEndpoints(nodeId, ["RightMiddle"], ["LeftMiddle"]);
   } else if (containerId.startsWith("output")){
-    _addEndpoints(node.id, [], ["LeftMiddle"]);
+    _addEndpoints(nodeId, [], ["LeftMiddle"]);
   }
 
 
