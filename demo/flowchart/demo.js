@@ -184,7 +184,7 @@ function drop(ev) {
   var data = ev.dataTransfer.getData("id");
   const node = document.getElementById(data);
 
-  const containerId = node.parentNode.parentNode.parentNode.parentNode.parentNode.id;
+  //const containerId = node.parentNode.parentNode.parentNode.parentNode.parentNode.id;
 
   var nodeCopy = node.cloneNode(true);
 
@@ -197,13 +197,15 @@ function drop(ev) {
   nodeCopy.classList.add("jtk-node");
   nodeCopy.classList.remove("smallwindow");
 
+  const { classList } = node;
+
   ev.target.appendChild(nodeCopy);
   instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), { grid: [20, 20] });
-  if (containerId.startsWith("input")){
+  if (classList.contains("input")){
     _addEndpoints(nodeId, ["RightMiddle"], []);
-  } else if (containerId.startsWith("intermediate")){
+  } else if (classList.contains("intermediate")){
     _addEndpoints(nodeId, ["RightMiddle"], ["LeftMiddle"]);
-  } else if (containerId.startsWith("output")){
+  } else if (classList.contains("output")){
     _addEndpoints(nodeId, [], ["LeftMiddle"]);
   }
 
