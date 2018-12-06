@@ -162,6 +162,7 @@ function allowDrop(ev) {
 
 function drag(ev) {
   ev.dataTransfer.setData("id", ev.target.id);
+  console.log("drag",ev.target.id)
 }
 
 var _addEndpoints = function (toId, sourceAnchors, targetAnchors) {
@@ -180,26 +181,35 @@ var _addEndpoints = function (toId, sourceAnchors, targetAnchors) {
 let componentId = 0;
 
 function drop(ev) {
+  console.log(ev)
   ev.preventDefault();
   var data = ev.dataTransfer.getData("id");
+  console.log("data ", data)
   const node = document.getElementById(data);
 
   //const containerId = node.parentNode.parentNode.parentNode.parentNode.parentNode.id;
 
-  var nodeCopy = node.cloneNode(true);
+  //var nodeCopy = node.cloneNode(true);
 
   const nodeId = node.id + componentId;
   componentId++;
-  nodeCopy.id = "flowchart"+nodeId; /* We cannot use the same ID */
+  /*nodeCopy.id = "flowchart"+nodeId;
   nodeCopy.removeAttribute('draggable');
   nodeCopy.classList.add("window");
   nodeCopy.classList.add("bigwindow");
   nodeCopy.classList.add("jtk-node");
-  nodeCopy.classList.remove("smallwindow");
+  nodeCopy.classList.remove("smallwindow");*/
+
+
+  ReactDOM.render(
+    <ScaleComponent id={"flowchart" + nodeId}/>,
+    document.getElementById("canvas")
+  );
+
 
   const { classList } = node;
 
-  ev.target.appendChild(nodeCopy);
+  //ev.target.appendChild(<ScaleComponent id={nodeId}/>);
   instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), { grid: [20, 20] });
   if (classList.contains("input")){
     _addEndpoints(nodeId, ["RightMiddle"], []);
@@ -212,3 +222,20 @@ function drop(ev) {
 
   console.log("ev ", ev)
 }
+
+ReactDOM.render(
+  <ScaleComponent id={"flowchartWindow1" }/>,
+  document.getElementById("canvas")
+);
+ReactDOM.render(
+  <LightpadComponent id={"flowchartWindow2"}/>,
+  document.getElementById("canvas")
+);
+ReactDOM.render(
+  <ScaleComponent id={"flowchartWindow3"}/>,
+  document.getElementById("canvas")
+);
+ReactDOM.render(
+  <ScaleComponent id={"flowchartWindow4"}/>,
+  document.getElementById("canvas")
+);

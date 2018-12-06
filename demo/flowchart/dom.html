@@ -13,6 +13,13 @@
         <link rel="stylesheet" href="../../css/jsplumbtoolkit-demo.css">
         <link rel="stylesheet" href="demo.css">
 
+        <!-- Load React. -->
+        <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
     </head>
     <body>
 
@@ -96,7 +103,7 @@
 
             </div>
             <div class="jtk-demo-canvas canvas-wide jtk-surface jtk-surface-nopan" id="canvas" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <div class="bigwindow window component jtk-node" id="flowchartWindow1">
+                <!--<div class="bigwindow window component jtk-node" id="flowchartWindow1">
 
                     <div style="float: left;"><strong >LightPad</strong></div>
                     <div style="float: left;">Threshold: <input type="text" style="width:30px;"/></div>
@@ -106,7 +113,7 @@
                 </div>
                 <div class="bigwindow window component jtk-node" id="flowchartWindow2"><strong>LED</strong><br/><br/></div>
                 <div class="bigwindow window component jtk-node" id="flowchartWindow3"><strong>Scale</strong><br/><br/></div>
-                <div class="bigwindow window component jtk-node" id="flowchartWindow4"><strong>&</strong><br/><br/></div>
+                <div class="bigwindow window component jtk-node" id="flowchartWindow4"><strong>&</strong><br/><br/></div>-->
             </div>
             <!-- /demo -->
             <!-- explanation -->
@@ -120,15 +127,23 @@
             <!-- /explanation -->
         </div>
 
+
         <!-- JS -->
         <script src="../../dist/js/jsplumb.js"></script>
         <!-- /JS -->
 
+        <!-- Load our React component. -->
+        <script type="text/babel" src="window_component.js"></script>
+
         <!--  demo code -->
-        <script src="demo.js"></script>
+        <script type="text/babel" src="demo.js"></script>
+
+
+
 
         <!-- demo list -->
         <script src="../demo-list.js"></script>
+
 
     </body>
 </html>

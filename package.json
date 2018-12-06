@@ -47,5 +47,13 @@
     "katavorio": "1.2.0",
     "morgan": "^1.9.1",
     "mottle": "1.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/jsplumb/jsplumb/issues"
+  },
+  "homepage": "https://github.com/jsplumb/jsplumb#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2"
   }
 }
